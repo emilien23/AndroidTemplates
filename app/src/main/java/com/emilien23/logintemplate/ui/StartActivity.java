@@ -1,4 +1,4 @@
-package com.emilien23.logintemplate;
+package com.emilien23.logintemplate.ui;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;

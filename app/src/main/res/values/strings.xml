@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LoginTemplate</string>
+    <string name="message_unauthorized">Время сеанса истекло. Выполните вход в учетную запись</string>
+    <string name="message_forbidden">Недостаточно прав на выполнение действия</string>
 </resources>

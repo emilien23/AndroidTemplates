@@ -1,8 +1,10 @@
-package com.emilien23.logintemplate;
+package com.emilien23.logintemplate.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.emilien23.logintemplate.R;
 
 public class MainActivity extends AppCompatActivity {
 
