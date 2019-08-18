@@ -1,4 +1,4 @@
-package com.emilien23.logintemplate.utils;
+package com.emilien23.logintemplate.utils.exception;
 
 public interface ExceptionHandler {
 

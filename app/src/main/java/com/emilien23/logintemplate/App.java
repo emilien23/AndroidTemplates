@@ -1,25 +1,41 @@
 package com.emilien23.logintemplate;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.widget.Toast;
 
+import com.emilien23.logintemplate.di.component.AppServiceComponent;
+import com.emilien23.logintemplate.di.component.DaggerAppServiceComponent;
+import com.emilien23.logintemplate.di.module.context.ContextModule;
+import com.emilien23.logintemplate.di.module.ExceptionHandlerModule;
 import com.emilien23.logintemplate.ui.LoginActivity;
-import com.emilien23.logintemplate.utils.ExceptionHandler;
-import com.emilien23.logintemplate.utils.HttpExceptionHandler;
+import com.emilien23.logintemplate.utils.exception.HttpExceptionHandler;
 
 public class App extends Application implements HttpExceptionHandler.HttpExceptionCallback {
 
+    private AppServiceComponent appServiceComponent;
 
     private String MESSAGE_UNAUTHORIZED = getResources().getString(R.string.message_unauthorized);
     private String MESSAGE_FORBIDDEN = getResources().getString(R.string.message_forbidden);
 
-    public static ExceptionHandler exceptionHandler;
+
+    public static App get(Activity activity){
+        return (App) activity.getApplication();
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        exceptionHandler = new HttpExceptionHandler(this);
+
+        appServiceComponent = DaggerAppServiceComponent.builder()
+                .exceptionHandlerModule(new ExceptionHandlerModule(this))
+                .contextModule(new ContextModule(this))
+                .build();
+    }
+
+    public AppServiceComponent getRandomUserApplicationComponent(){
+        return appServiceComponent;
     }
 
     @Override
