@@ -1,4 +1,4 @@
-package com.emilien23.logintemplate.network;
+package com.emilien23.logintemplate.utils.interceptor;
 
 import java.io.IOException;
 

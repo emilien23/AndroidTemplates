@@ -21,7 +21,7 @@ public class HttpExceptionHandler implements ExceptionHandler {
         callback.onUnknown(message);
     }
 
-    public void onException(Throwable t){
+    public void onError(Throwable t){
         callback.onUnknown(t.getMessage());
     }
 

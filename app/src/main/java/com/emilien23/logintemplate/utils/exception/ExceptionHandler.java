@@ -4,5 +4,7 @@ public interface ExceptionHandler {
 
     void onException(String message);
 
-    void onException(Throwable t);
+    void onException(Integer code);
+
+    void onError(Throwable t);
 }

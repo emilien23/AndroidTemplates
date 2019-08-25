@@ -14,28 +14,20 @@ import com.emilien23.logintemplate.utils.exception.HttpExceptionHandler;
 
 public class App extends Application implements HttpExceptionHandler.HttpExceptionCallback {
 
-    private AppServiceComponent appServiceComponent;
+    public static App instance;
+    public static AppServiceComponent appServiceComponent;
 
     private String MESSAGE_UNAUTHORIZED = getResources().getString(R.string.message_unauthorized);
     private String MESSAGE_FORBIDDEN = getResources().getString(R.string.message_forbidden);
 
-
-    public static App get(Activity activity){
-        return (App) activity.getApplication();
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
-
+        instance = this;
         appServiceComponent = DaggerAppServiceComponent.builder()
                 .exceptionHandlerModule(new ExceptionHandlerModule(this))
                 .contextModule(new ContextModule(this))
                 .build();
-    }
-
-    public AppServiceComponent getRandomUserApplicationComponent(){
-        return appServiceComponent;
     }
 
     @Override

@@ -1,13 +1,10 @@
 package com.emilien23.logintemplate.di.module.app;
 
-import android.text.TextUtils;
-
 import com.emilien23.logintemplate.BuildConfig;
-import com.emilien23.logintemplate.network.AuthenticationInterceptor;
+import com.emilien23.logintemplate.utils.interceptor.AuthenticationInterceptor;
 
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
