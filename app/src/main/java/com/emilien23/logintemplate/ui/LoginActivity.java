@@ -1,21 +1,40 @@
 package com.emilien23.logintemplate.ui;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.emilien23.logintemplate.App;
+import com.emilien23.logintemplate.R;
 import com.emilien23.logintemplate.di.component.DaggerLoginActivityComponent;
 import com.emilien23.logintemplate.di.component.LoginActivityComponent;
-import com.emilien23.logintemplate.network.api.NetworkService;
+import com.emilien23.logintemplate.utils.factories.ViewModelFactory;
+import com.emilien23.logintemplate.view_models.login.LoginViewModel;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
 
 public class LoginActivity extends AppCompatActivity {
 
+    @BindView(R.id.btnLogin)
+    Button btnLogin;
+    @BindView(R.id.btnToRegistr)
+    Button btnRegistr;
+    @BindView(R.id.edLogin)
+    Button edLogin;
+    @BindView(R.id.edPassword)
+    Button edPassword;
 
+    @Inject
+    ViewModelFactory viewModelFactory;
 
-    LoginActivityComponent loginActivityComponent;
-    NetworkService networkService;
+    private LoginViewModel loginViewModel;
+    private LoginActivityComponent loginActivityComponent;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,7 +45,11 @@ public class LoginActivity extends AppCompatActivity {
                 .appServiceComponent(App.appServiceComponent)
                 .build();
 
-        networkService = loginActivityComponent.getAppService();
+        loginActivityComponent.inject(this);
+
+        loginViewModel = ViewModelProviders
+                .of(this, viewModelFactory)
+                .get(LoginViewModel.class);
     }
 
     @Override
@@ -43,4 +66,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
+
 }

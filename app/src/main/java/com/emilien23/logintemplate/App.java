@@ -1,6 +1,5 @@
 package com.emilien23.logintemplate;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.widget.Toast;

@@ -5,11 +5,12 @@ import com.emilien23.logintemplate.network.models.response.BaseResponse;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
 import retrofit2.HttpException;
 
-abstract class NetworkCallbackWrapper<T> implements Observer<BaseResponse<T>> {
+public abstract class NetworkCallbackWrapper<T> extends DisposableObserver<BaseResponse<T>> {
 
-    abstract void onSuccess(T result);
+    public abstract void onSuccess(T result);
 
     @Override
     public void onNext(BaseResponse<T> baseResponse) {
@@ -30,7 +31,4 @@ abstract class NetworkCallbackWrapper<T> implements Observer<BaseResponse<T>> {
 
     @Override
     public void onComplete() { }
-
-    @Override
-    public void onSubscribe(Disposable d) { }
 }
